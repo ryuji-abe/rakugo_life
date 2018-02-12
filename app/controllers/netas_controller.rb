@@ -1,6 +1,6 @@
 class NetasController < ApplicationController
   before_action :set_neta, only: [:show, :edit, :update, :destroy]
-#  before_action :require_login, only: [:new, :edit, :show]
+  before_action :require_login, only: [:new, :edit, :show]
 
   def new
     if params[:back]
@@ -12,7 +12,7 @@ class NetasController < ApplicationController
 
   def create
     @neta = Neta.create(neta_params)
-#    @neta.user_id = current_user.id
+    @neta.user_id = current_user.id
     if @neta.save
       redirect_to netas_path, notice: '投稿しました'
     else
@@ -22,7 +22,7 @@ class NetasController < ApplicationController
 
   def confirm
     @neta = Neta.new(neta_params)
-#    @neta.user_id = current_user.id
+    @neta.user_id = current_user.id
     render :new if @neta.invalid?
   end
 
@@ -61,11 +61,10 @@ class NetasController < ApplicationController
   def set_neta
     @neta = Neta.find(params[:id])
   end
-=begin
+
   def require_login
     unless logged_in?
       redirect_to new_session_path
     end
   end
-=end
 end

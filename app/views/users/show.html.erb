@@ -1,0 +1,28 @@
+C<div class="contents">
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <%= @user.name %> さん <%= @user.email %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <h4>お気に入り一覧</h4>
+      </div>
+    </div>
+  </div>
+  <% @favorites_netas.each do |neta| %>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <%= neta.user.name %> さん
+      </div>
+      <div>
+        <%= neta.neta_name %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
