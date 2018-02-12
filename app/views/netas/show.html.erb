@@ -5,7 +5,13 @@
         <%= @neta.user.name %> さん
       </div>
       <div>
-        <%= @neta.content %>
+        <%= @neta.neta_name %>
+      </div>
+      <div>
+        <%= @neta.source %>
+      </div>
+      <div>
+        <%= @neta.impression %>
       </div>
       <% if @neta.user == current_user %>
         <div>

@@ -1,0 +1,34 @@
+<div class="contents">
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <h4>以下の内容で投稿します</h4>
+    </div>
+    <div class="col-sm-offset-3 col-sm-6">
+    <%= form_with(model: @neta, url: netas_path, local: true) do |form| %>
+      <%= form.hidden_field :neta_name %>
+      <%= form.hidden_field :source %>
+      <%= form.hidden_field :impression %>
+      <div>
+        <%= @neta.neta_name %></p>
+      </div>
+      <div>
+        <%= @neta.source %></p>
+      </div>
+      <div>
+        <%= @neta.impression %></p>
+      </div>
+      <div>
+        <%= form.submit  "投稿する" %>
+      </div>
+    <% end %>
+    <%= form_with(model: @neta, url: new_neta_path, local: true, method: 'get') do |form| %>
+      <%= form.hidden_field :neta_name %>
+      <%= form.hidden_field :source %>
+      <%= form.hidden_field :impression %>
+      <div>
+        <%= form.submit "もどる", name: 'back' %>
+      </div>
+    <% end %>
+    </div>
+  </div>
+</div>
