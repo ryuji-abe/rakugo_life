@@ -28,7 +28,7 @@ class NetasController < ApplicationController
 
   def show
     @neta = Neta.find(params[:id])
-#    @favorite = current_user.favorites.find_by(neta_id: @neta.id)
+    @favorite = current_user.favorites.find_by(neta_id: @neta.id)
   end
 
   def edit

@@ -12,7 +12,7 @@
           <%= link_to "編集", edit_neta_path(@neta.id), class:'btn btn-default', data: { confirm: '本当に編集していいですか？' } %>
           <%= link_to '削除', neta_path(@neta.id), class:'btn btn-default', method: :delete, data: { confirm: '本当に削除していいですか？' } %>
         </div>
-<!--      <% else %>
+      <% else %>
         <% if @favorite.present? %>
         <div class="post-info">
             <%= link_to 'いいねをはずす', favorite_path(neta_id: @neta.id), method: :delete, class: 'btn btn-danger' %>
@@ -22,7 +22,7 @@
           <%= link_to 'いいね', favorites_path(neta_id: @neta.id), method: :post, class: 'btn btn-primary' %>
         </div>
         <% end %>
-      <% end %>-->
+      <% end %>
       <div>
         <%= link_to "一覧", netas_path, class: 'btn btn-default' %>
       </div>

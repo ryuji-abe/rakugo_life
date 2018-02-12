@@ -7,7 +7,7 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { minimum: 6 }
   has_many :netas, dependent: :destroy
-#  has_many :favorites, dependent: :destroy
-#  has_many :favorite_netas, through: :favorites, source: :neta
+  has_many :favorites, dependent: :destroy
+  has_many :favorite_netas, through: :favorites, source: :neta
   mount_uploader :image, ImageUploader
 end
