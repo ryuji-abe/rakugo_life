@@ -1,0 +1,23 @@
+<div class="contents">
+  <p class="alert-info"><%= notice %></p>
+  <% @netas.each do |neta| %>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <%= neta.user.name %> さん
+      </div>
+      <div>
+        <%= neta.neta_name %>
+      </div>
+      <div>
+        <%= neta.source %>
+      </div>
+<!--      <% if logged_in? %>-->
+      <div>
+        <%= link_to '詳細', neta_path(neta.id), class:'btn btn-default' %>
+      </div>
+<!--      <% end %>-->
+    </div>
+  </div>
+  <% end %>
+</div>
