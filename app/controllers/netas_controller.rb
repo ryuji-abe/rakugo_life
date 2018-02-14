@@ -38,7 +38,7 @@ class NetasController < ApplicationController
   def update
     @neta = Neta.find(params[:id])
     if @neta.update(neta_params)
-      redirect_to netas_path, notice: '投稿を更新しました'
+      redirect_to user_path(current_user.id), notice: '投稿を更新しました'
     else
       render 'edit'
     end
@@ -46,6 +46,7 @@ class NetasController < ApplicationController
 
   def index
     @netas = Neta.all
+    @q = Neta.ransack(params[:q])
   end
 
   def destroy
@@ -67,4 +68,5 @@ class NetasController < ApplicationController
       redirect_to new_session_path
     end
   end
+
 end

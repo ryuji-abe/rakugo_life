@@ -22,7 +22,7 @@
               <li><%= link_to "投稿一覧", netas_path %></li>
             <% if logged_in? %>
               <li><%= link_to "新規投稿", new_neta_path %></li>
-              <li><%= link_to "ユーザー情報", user_path(current_user.id) %></li>
+              <li><%= link_to "マイページ", user_path(current_user.id) %></li>
               <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
             <% else %>
               <li><%= link_to "アカウント登録", new_user_path %></li>

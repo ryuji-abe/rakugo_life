@@ -2,7 +2,43 @@ C<div class="contents">
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6">
       <div>
-        <%= @user.name %> さん <%= @user.email %>
+        <%= @user.name %> さんのページ
+      </div>
+      <div>
+        メールアドレス:<%= @user.email %>
+      </div>
+      <div>
+        アイコン画像:<%= image_tag @user.image %>
+      </div>
+    </div>
+    <div>
+      <%= link_to "プロフィール編集", edit_user_path(@user.id), class:'btn btn-default', data: { confirm: '本当に編集していいですか？' } %>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <h4>持ちネタ一覧</h4>
+      </div>
+    </div>
+  </div>
+  <% @netas.each do |neta| %>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <%= neta.neta_name %>
+      </div>
+      <div>
+        <%= neta.source %>
+      </div>
+      <div>
+        <%= neta.impression %>
+      </div>
+      <div>
+        <%= link_to "編集", edit_neta_path(neta.id), class:'btn btn-default', data: { confirm: '本当に編集していいですか？' } %>
+      </div>
+      <div>
+        <%= link_to '削除', neta_path(neta.id), class:'btn btn-default', method: :delete, data: { confirm: '本当に削除していいですか？' } %>
       </div>
     </div>
   </div>
@@ -13,6 +49,7 @@ C<div class="contents">
       </div>
     </div>
   </div>
+  <% end %>
   <% @favorites_netas.each do |neta| %>
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6">
