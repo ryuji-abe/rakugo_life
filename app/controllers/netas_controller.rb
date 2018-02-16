@@ -46,7 +46,12 @@ class NetasController < ApplicationController
 
   def index
     @netas = Neta.all
-    @q = Neta.ransack(params[:q])
+    @search = Neta.ransack(params[:q])
+    if params[:q].nil?
+      @results = nil
+    else
+      @results = @search.result
+    end
   end
 
   def destroy

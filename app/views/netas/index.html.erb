@@ -1,23 +1,46 @@
 <div class="contents">
   <p class="alert-info"><%= notice %></p>
-  <% @netas.each do |neta| %>
-  <div class="row">
-    <div class="col-sm-offset-3 col-sm-6">
-      <div>
-        <%= neta.user.name %> さん
+  <%= search_form_for @search, url: netas_path do |f| %>
+    <%= f.label :neta_name_cont, 'Name' %>
+    <%= f.text_field :neta_name_cont %>
+    <%= f.submit "Search" %>
+  <% end %>
+  <% if @results == nil %>
+    <% @netas.each do |neta| %>
+    <div class="row">
+      <div class="col-sm-offset-3 col-sm-6">
+        <div>
+          <%= link_to image_tag(neta.user.image), user_path(neta.user.id) %>
+          <%= link_to neta.user.name, user_path(neta.user.id) %> さん
+        </div>
+        <div>
+          <%= neta.neta_name %>
+        </div>
+        <div>
+          <%= neta.source %>
+        </div>
+        <% if logged_in? %>
+        <div>
+          <%= link_to '詳細', neta_path(neta.id), class:'btn btn-default' %>
+        </div>
+        <% end %>
       </div>
-      <div>
-        <%= neta.neta_name %>
-      </div>
-      <div>
-        <%= neta.source %>
-      </div>
-      <% if logged_in? %>
-      <div>
-        <%= link_to '詳細', neta_path(neta.id), class:'btn btn-default' %>
-      </div>
-      <% end %>
     </div>
-  </div>
+    <% end %>
+  <% else %>
+    <div>検索結果：<% @results.length %>件</div>
+    <% @results.each do |result| %>
+    <div class="row">
+      <div class="col-sm-offset-3 col-sm-6">
+        <div>
+          <%= link_to image_tag(result.user.image), user_path(result.user.id) %>
+          <%= link_to result.user.name, user_path(result.user.id) %> さん
+        </div>
+        <div>
+          <%= result.neta_name %>
+        </div>
+      </div>
+    </div>
+    <% end %>
   <% end %>
 </div>
