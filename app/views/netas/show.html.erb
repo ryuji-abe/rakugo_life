@@ -15,11 +15,11 @@
       </div>
       <% unless @neta.user == current_user %>
         <% if @favorite.present? %>
-        <div class="post-info">
+        <div>
             <%= link_to 'いいねをはずす', favorite_path(neta_id: @neta.id), method: :delete, class: 'btn btn-danger' %>
         </div>
         <% else %>
-        <div class="post-info">
+        <div>
           <%= link_to 'いいね', favorites_path(neta_id: @neta.id), method: :post, class: 'btn btn-primary' %>
         </div>
         <% end %>
