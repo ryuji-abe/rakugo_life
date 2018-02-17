@@ -15,7 +15,7 @@
         <%= @neta.source %></p>
       </div>
       <div>
-        <%= @neta.impression %></p>
+        <%= simple_format(@neta.impression) %></p>
       </div>
       <div>
         <%= form.submit  "投稿する" %>

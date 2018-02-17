@@ -56,7 +56,7 @@ class NetasController < ApplicationController
 
   def destroy
     @neta.destroy
-    redirect_to netas_path, notice: '投稿を削除しました'
+    redirect_to user_path(current_user.id), notice: '投稿を削除しました'
   end
 
   private

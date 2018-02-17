@@ -11,7 +11,7 @@
         <%= @neta.source %>
       </div>
       <div>
-        <%= @neta.impression %>
+        <%= simple_format(@neta.impression) %>
       </div>
       <% unless @neta.user == current_user %>
         <% if @favorite.present? %>

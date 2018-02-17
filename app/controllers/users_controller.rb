@@ -36,7 +36,6 @@ class UsersController < ApplicationController
   end
 
   def destroy
-#    current_user.find_by(user_id: params[:user_id]).destroy
     User.find_by(id: params[:user_id]).destroy
     redirect_to new_user_path, notice: '退会しました'
   end

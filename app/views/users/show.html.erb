@@ -51,7 +51,7 @@ C<div class="contents">
         <%= neta.source %>
       </div>
       <div>
-        <%= neta.impression %>
+        <%= simple_format(neta.impression) %>
       </div>
       <% if neta.user_id == current_user.id %>
       <div>
