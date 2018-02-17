@@ -28,8 +28,39 @@
       <%= form.label :image, class:'col-xs-4'  %>
     </div>
     <div>
-      <%= form.file_field :image, id: :feed_image, class:'col-xs-6'  %>
+      <%= form.file_field :image, id: :feed_image %>
       <%= form.hidden_field :image_cache %>
+    </div>
+  </div>
+  <div class="field row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <%= form.label :sex  %>
+      </div>
+      <div>
+        <%= form.radio_button :sex, :male %> 男性
+        <%= form.radio_button :sex, :female %> 女性
+      </div>
+    </div>
+  </div>
+  <div class="field row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <%= form.label :age %>
+      </div>
+      <div>
+        <%= form.select :age, User.ages.keys.to_a, {} %>
+      </div>
+    </div>
+  </div>
+  <div class="field row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <%= form.label :favorite_rakugoka %>
+      </div>
+      <div>
+        <%= form.text_field :favorite_rakugoka %>
+      </div>
     </div>
   </div>
   <div class="field row">

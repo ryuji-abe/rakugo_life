@@ -10,4 +10,6 @@ class User < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :favorite_netas, through: :favorites, source: :neta
   mount_uploader :image, ImageUploader
+  enum sex: { undefined: 0, male: 1, female: 2 }
+  enum age: { teens: 10, twenties: 20, Thirties: 30, Forties: 40, Fifties: 50, sixties: 60, Seventies: 70, Eighties: 80 }
 end

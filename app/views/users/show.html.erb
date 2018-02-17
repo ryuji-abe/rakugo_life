@@ -6,11 +6,20 @@ C<div class="contents">
       </div>
       <% if @user.id == current_user.id %>
       <div>
-        メールアドレス:<%= @user.email %>
+        メールアドレス : <%= @user.email %>
       </div>
       <% end %>
       <div>
-        アイコン画像:<%= image_tag @user.image %>
+        アイコン画像 : <%= image_tag @user.image %>
+      </div>
+      <div>
+        性別 : <%= @user.sex %>
+      </div>
+      <div>
+        年齢 : <%= @user.age %>
+      </div>
+      <div>
+        好きな噺家 : <%= @user.favorite_rakugoka %>
       </div>
     </div>
     <% if @user.id == current_user.id %>
