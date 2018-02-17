@@ -1,0 +1,14 @@
+<div class="contents">
+  <p class="alert-info"><%= notice %></p>
+  <% @users.each do |user| %>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div>
+        <%= link_to image_tag(user.image), user_path(user.id) %>
+        <%= link_to user.name, user_path(user.id) %> さん
+        (<%= user.netas.size %>)
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

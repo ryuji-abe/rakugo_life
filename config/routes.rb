@@ -5,7 +5,7 @@ Rails.application.routes.draw do
       post :confirm
     end
   end
-  resources :users, only: [:new, :create, :edit, :show, :update]
+  resources :users, only: [:new, :create, :edit, :show, :update, :index]
   resources :sessions, only: [:new, :create, :destroy]
   resources :favorites, only: [:create, :destroy]
   if Rails.env.development?

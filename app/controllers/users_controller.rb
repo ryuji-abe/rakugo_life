@@ -31,10 +31,14 @@ class UsersController < ApplicationController
     @favorites_netas = @user.favorite_netas
   end
 
+  def index
+    @users = User.all
+  end
+
   private
   def user_params
     params.require(:user).permit(:name, :email, :password,
-      :password_confirmation, :image, :sex, :age, :favorite_rakugoka)
+      :password_confirmation, :image, :sex, :age, :favorite_rakugoka, :year_of_experience)
   end
 
 end

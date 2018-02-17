@@ -28,7 +28,7 @@
     </div>
     <% end %>
   <% else %>
-    <div>検索結果：<% @results.length %>件</div>
+    <div>検索結果：<% @results.size %>件</div>
     <% @results.each do |result| %>
     <div class="row">
       <div class="col-sm-offset-3 col-sm-6">
@@ -39,6 +39,11 @@
         <div>
           <%= result.neta_name %>
         </div>
+        <% if logged_in? %>
+        <div>
+          <%= link_to '詳細', neta_path(result.id), class:'btn btn-default' %>
+        </div>
+        <% end %>
       </div>
     </div>
     <% end %>
