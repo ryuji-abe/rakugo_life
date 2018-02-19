@@ -93,6 +93,10 @@
   margin: 10px 0;
 }
 
+.back-btn{
+  margin-top: 5px;
+}
+
 .footer{
   text-align: center;
   border-top: solid 1px #ddd;

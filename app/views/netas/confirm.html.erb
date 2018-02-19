@@ -1,42 +1,47 @@
 <div class="row">
-  <div class="col-sm-offset-2 col-sm-8">
+  <div class="col-sm-offset-3 col-sm-6">
     <h4>以下の内容で投稿します</h4>
   </div>
 </div>
 <div class="row">
-  <div class="col-sm-offset-2 col-sm-8">
+  <div class="col-sm-offset-3 col-sm-6">
+    <%= form_with(model: @neta, url: netas_path, local: true) do |form| %>
     <div class="bs-component">
-      <%= form_with(model: @neta, url: netas_path, local: true) do |form| %>
       <div class="panel panel-default">
         <div class="panel-heading">
-          <%= @neta.neta_name %>
+          演目名
         </div>
         <div class="panel-body">
-          <table>
-            <tr>
-              <td class="neta-info neta-label">参考にした噺家さん</td>
-              <td class="neta-info"><%= @neta.source %></td>
-            </tr>
-            <tr>
-              <td class="neta-info neta-label">やってみての感想</td>
-              <td class="neta-info"><%= simple_format(@neta.impression) %></td>
-            </tr>
-          </table>
+          <%= @neta.neta_name %>
         </div>
       </div>
-      <div>
-        <%= form.hidden_field :neta_name %>
-        <%= form.hidden_field :source %>
-        <%= form.hidden_field :impression %>
-        <%= form.submit  "投稿する", class:'btn btn-default btn-primary' %>
-      <% end %>
-      <%= form_with(model: @neta, url: new_neta_path, local: true, method: 'get') do |form| %>
-        <%= form.hidden_field :neta_name %>
-        <%= form.hidden_field :source %>
-        <%= form.hidden_field :impression %>
-        <%= form.submit "もどる", name: 'back', class:'btn btn-default' %>
-      <% end %>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          参考にした噺家
+        </div>
+        <div class="panel-body">
+          <%= @neta.source %>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          ネタをやってみての感想
+        </div>
+        <div class="panel-body">
+          <%= simple_format(@neta.impression) %>
+        </div>
       </div>
     </div>
+      <%= form.hidden_field :neta_name %>
+      <%= form.hidden_field :source %>
+      <%= form.hidden_field :impression %>
+      <%= form.submit  "投稿する", class:'btn btn-default btn-primary' %>
+    <% end %>
+    <%= form_with(model: @neta, url: new_neta_path, local: true, method: 'get') do |form| %>
+      <%= form.hidden_field :neta_name %>
+      <%= form.hidden_field :source %>
+      <%= form.hidden_field :impression %>
+      <%= form.submit "もどる", name: 'back', class:'btn btn-default back-btn' %>
+    <% end %>
   </div>
 </div>
