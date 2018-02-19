@@ -14,3 +14,92 @@
  *= require_tree .
  *= require_self
  */
+ html {
+   min-height: 100%;
+   position: relative;
+ }
+
+ body {
+   background-color: #f8f4e7;
+   color: #333;
+   line-height: 1.5;
+   letter-spacing: .1em;
+ }
+
+.jumbotron h1,
+.jumbotron p,
+.navbar-brand{
+  font-family: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+}
+
+.jumbotron{
+  background-image: url(top_image.png);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: #f8f4e7;
+}
+
+.jumbotron h1{
+  color: #fff;
+  font-size: 22px;
+  line-height: 1.5;
+  letter-spacing: .1em;
+  margin-bottom: 160px;
+}
+
+.jumbotron p{
+  color: #fff;
+  text-align: right;
+  font-size: 18px;
+  line-height: 1.5;
+  letter-spacing: .1em;
+}
+
+.contents{
+  padding-bottom: 80px;
+}
+
+.neta-info{
+  padding-bottom: 15px;
+}
+
+.neta-label{
+  padding-right: 30px;
+}
+
+.user_label{
+  padding: 5px 0 5px 0;
+}
+
+.input_field{
+  margin-bottom: 5px;
+}
+
+.title{
+  padding: 20px;
+  text-align: center;
+}
+
+.error-msg{
+  color: red;
+}
+
+.alert-text{
+  text-align: center;
+}
+
+.neta-list, .fevorite-list{
+  margin: 10px 0;
+}
+
+.footer{
+  text-align: center;
+  border-top: solid 1px #ddd;
+  background-color: #fff;
+  padding: 15px;
+  position: absolute;
+  height:60px;
+  min-width: 100%;
+  bottom:0;
+}

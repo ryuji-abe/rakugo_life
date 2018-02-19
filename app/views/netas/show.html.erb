@@ -1,32 +1,47 @@
-<div class="contents">
-  <div class="row">
-    <div class="col-sm-offset-3 col-sm-6">
-      <div>
-        <%= @neta.user.name %> さん
-      </div>
-      <div>
-        <%= @neta.neta_name %>
-      </div>
-      <div>
-        <%= @neta.source %>
-      </div>
-      <div>
-        <%= simple_format(@neta.impression) %>
-      </div>
-      <% unless @neta.user == current_user %>
-        <% if @favorite.present? %>
-        <div>
-            <%= link_to 'いいねをはずす', favorite_path(neta_id: @neta.id), method: :delete, class: 'btn btn-danger' %>
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <div class="user_label">
+      <%= link_to image_tag(@neta.user.image), user_path(@neta.user.id) %>
+      <%= link_to @neta.user.name, user_path(@neta.user.id) %> さん
+    </div>
+    <div class="bs-component">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          演目名
         </div>
-        <% else %>
-        <div>
-          <%= link_to 'いいね', favorites_path(neta_id: @neta.id), method: :post, class: 'btn btn-primary' %>
+        <div class="panel-body">
+          <%= @neta.neta_name %>
         </div>
-        <% end %>
-      <% end %>
-      <div>
-        <%= link_to "一覧", netas_path, class: 'btn btn-default' %>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          参考にした噺家
+        </div>
+        <div class="panel-body">
+          <%= @neta.source %>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          ネタをやってみての感想
+        </div>
+        <div class="panel-body">
+          <%= simple_format(@neta.impression) %>
+        </div>
       </div>
     </div>
+    <% if logged_in? %>
+      <% if @neta.user == current_user %>
+        <%= link_to "編集", edit_neta_path(@neta.id), class:'btn btn-primary', data: { confirm: '本当に編集していいですか？' } %>
+        <%= link_to '削除', neta_path(@neta.id), class:'btn btn-danger', method: :delete, data: { confirm: '本当に削除していいですか？' } %>
+      <% else %>
+        <% if @favorite.present? %>
+            <%= link_to 'いいねをはずす', favorite_path(neta_id: @neta.id), method: :delete, class: 'btn btn-danger' %>
+        <% else %>
+          <%= link_to 'いいね', favorites_path(neta_id: @neta.id), method: :post, class: 'btn btn-primary' %>
+        <% end %>
+      <% end %>
+    <% end %>
+    <%= link_to "もどる", :back, class:'btn btn-default' %>
   </div>
 </div>

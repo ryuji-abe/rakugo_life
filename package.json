@@ -2,7 +2,7 @@
   "name": "rakugo_life",
   "private": true,
   "dependencies": {
-    "bootstrap": "^4.0.0",
+    "bootstrap": "3",
     "jquery": "^3.3.1"
   }
 }

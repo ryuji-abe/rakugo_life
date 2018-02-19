@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root 'sessions#new'
+  root 'tops#index'
   resources :netas do
     collection do
       post :confirm

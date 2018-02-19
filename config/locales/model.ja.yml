@@ -1,0 +1,22 @@
+ja:
+  activerecord:
+    models:
+      neta: "持ちネタ"
+      user: "アマチュア落語家"
+    attributes:
+      neta:
+        neta_name: "演目名"
+        source: "参考にした噺家"
+        impression: "やってみての感想"
+      user:
+        name: "高座名"
+        email: "メールアドレス"
+        current_password: "現在のパスワード"
+        password: "パスワード"
+        password_confirmation: "確認用パスワード"
+        remember_me: "ログインを記憶"
+        image: "アイコン画像"
+        sex: "性別"
+        age: "年齢"
+        favorite_rakugoka: "好きな噺家"
+        year_of_experience: "落語歴"

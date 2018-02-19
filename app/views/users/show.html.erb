@@ -1,39 +1,59 @@
-C<div class="contents">
+<div class="row">
+  <div class="alert-text">
+    <p class="alert-info"><%= notice %></p>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <div class="user_label">
+      <%= image_tag @user.image %>
+      <%= @user.name %> さん
+    </div>
+    <table>
+      <% if logged_in? %>
+        <% if @user.id == current_user.id %>
+      <tr>
+        <td class="neta-info neta-label">メールアドレス</td>
+        <td class="neta-info"><%= @user.email %></td>
+      </tr>
+        <% end %>
+      <% end %>
+      <tr>
+        <td class="neta-info neta-label">性別</td>
+        <td class="neta-info"><%= @user.sex_text %></td>
+      </tr>
+      <tr>
+        <td class="neta-info neta-label">年齢</td>
+        <td class="neta-info"><%= @user.age_text %></td>
+      </tr>
+      <tr>
+        <td class="neta-info neta-label">落語歴</td>
+        <% if @user.year_of_experience == nil %>
+        <td class="neta-info"></td>
+        <% else %>
+        <td class="neta-info"><%= @user.year_of_experience %> 年</td>
+        <% end %>
+      </tr>
+      <tr>
+        <td class="neta-info neta-label">好きな噺家</td>
+        <td class="neta-info"><%= @user.favorite_rakugoka %></td>
+      </tr>
+    </table>
+  </div>
+</div>
+<% if logged_in? %>
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6">
-      <div>
-        <%= @user.name %> さんのページ
-      </div>
       <% if @user.id == current_user.id %>
       <div>
-        メールアドレス : <%= @user.email %>
+        <%= link_to "プロフィール編集", edit_user_path(@user.id), class:'btn btn-default', data: { confirm: '本当に編集していいですか？' } %>
+        <%= link_to '退会する', user_path(user_id: @user.id), method: :delete, class: 'btn btn-default', data: { confirm: '本当に退会しますか？' } %>
       </div>
       <% end %>
-      <div>
-        アイコン画像 : <%= image_tag @user.image %>
-      </div>
-      <div>
-        性別 : <%= @user.sex %>
-      </div>
-      <div>
-        年齢 : <%= @user.age %>
-      </div>
-      <div>
-        落語歴 : <%= @user.year_of_experience %> 年
-      </div>
-      <div>
-        好きな噺家 : <%= @user.favorite_rakugoka %>
-      </div>
     </div>
-    <% if @user.id == current_user.id %>
-    <div>
-      <%= link_to "プロフィール編集", edit_user_path(@user.id), class:'btn btn-default', data: { confirm: '本当に編集していいですか？' } %>
-    </div>
-    <div>
-        <%= link_to '退会する', user_path(user_id: @user.id), method: :delete, class: 'btn btn-danger', data: { confirm: '本当に退会しますか？' } %>
-    </div>
-    <% end %>
   </div>
+<% end %>
+<div class="neta-list">
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6">
       <div>
@@ -41,29 +61,33 @@ C<div class="contents">
       </div>
     </div>
   </div>
-  <% @netas.each do |neta| %>
+  <% if @netas.size == 0 %>
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6">
-      <div>
-        <%= neta.neta_name %>
-      </div>
-      <div>
-        <%= neta.source %>
-      </div>
-      <div>
-        <%= simple_format(neta.impression) %>
-      </div>
-      <% if neta.user_id == current_user.id %>
-      <div>
-        <%= link_to "編集", edit_neta_path(neta.id), class:'btn btn-default', data: { confirm: '本当に編集していいですか？' } %>
-      </div>
-      <div>
-        <%= link_to '削除', neta_path(neta.id), class:'btn btn-default', method: :delete, data: { confirm: '本当に削除していいですか？' } %>
-      </div>
-      <% end %>
+      持ちネタをまだ記録していません。
     </div>
   </div>
   <% end %>
+  <% @netas.each do |neta| %>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div class="bs-component">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div>
+              <%= link_to neta.neta_name, neta_path(neta.id) %>
+            </div>
+            <div>
+              参考にした噺家さん：<%= neta.source %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>
+<div class="fevorite-list">
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6">
       <div>
@@ -71,14 +95,31 @@ C<div class="contents">
       </div>
     </div>
   </div>
+  <% if @favorites_netas.size == 0 %>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      いいねしたネタはまだありません。
+    </div>
+  </div>
+  <% end %>
   <% @favorites_netas.each do |neta| %>
   <div class="row">
     <div class="col-sm-offset-3 col-sm-6">
-      <div>
-        <%= neta.user.name %> さん
+      <div class="user_label">
+        <%= link_to image_tag(neta.user.image), user_path(neta.user.id) %>
+        <%= link_to neta.user.name, user_path(neta.user.id) %> さん
       </div>
-      <div>
-        <%= neta.neta_name %>
+      <div class="bs-component">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div>
+              <%= link_to neta.neta_name, neta_path(neta.id) %>
+            </div>
+            <div>
+              参考にした噺家さん：<%= neta.source %>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>

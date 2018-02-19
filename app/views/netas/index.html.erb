@@ -1,51 +1,67 @@
-<div class="contents">
-  <p class="alert-info"><%= notice %></p>
-  <%= search_form_for @search, url: netas_path do |f| %>
-    <%= f.label :neta_name_cont, 'Name' %>
-    <%= f.text_field :neta_name_cont %>
-    <%= f.submit "Search" %>
-  <% end %>
-  <% if @results == nil %>
-    <% @netas.each do |neta| %>
-    <div class="row">
-      <div class="col-sm-offset-3 col-sm-6">
-        <div>
-          <%= link_to image_tag(neta.user.image), user_path(neta.user.id) %>
-          <%= link_to neta.user.name, user_path(neta.user.id) %> さん
-        </div>
-        <div>
-          <%= neta.neta_name %>
-        </div>
-        <div>
-          <%= neta.source %>
-        </div>
-        <% if logged_in? %>
-        <div>
-          <%= link_to '詳細', neta_path(neta.id), class:'btn btn-default' %>
-        </div>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
-  <% else %>
-    <div>検索結果：<%= @results.size %>件</div>
-    <% @results.each do |result| %>
-    <div class="row">
-      <div class="col-sm-offset-3 col-sm-6">
-        <div>
-          <%= link_to image_tag(result.user.image), user_path(result.user.id) %>
-          <%= link_to result.user.name, user_path(result.user.id) %> さん
-        </div>
-        <div>
-          <%= result.neta_name %>
-        </div>
-        <% if logged_in? %>
-        <div>
-          <%= link_to '詳細', neta_path(result.id), class:'btn btn-default' %>
-        </div>
-        <% end %>
-      </div>
-    </div>
-    <% end %>
-  <% end %>
+<div class="row">
+  <div class="alert-text">
+    <p class="alert-info"><%= notice %></p>
+  </div>
 </div>
+<div class="row">
+  <div class="col-sm-offset-3 col-sm-6">
+    <div class="form-group">
+    <%= search_form_for @search, url: netas_path do |f| %>
+      <%= f.text_field :neta_name_cont, class: 'form-control input_field', placeholder: 'ネタ名で検索' %>
+      <%= f.submit "検索", class: 'btn btn-default' %>
+    <% end %>
+    </div>
+  </div>
+</div>
+<% if @results == nil %>
+  <% @netas.each do |neta| %>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div class="user_label">
+        <%= link_to image_tag(neta.user.image), user_path(neta.user.id) %>
+        <%= link_to neta.user.name, user_path(neta.user.id) %> さん
+      </div>
+      <div class="bs-component">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div>
+              <%= link_to neta.neta_name, neta_path(neta.id) %>
+            </div>
+            <div>
+              参考にした噺家：<%= neta.source %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% else %>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      検索結果：<%= @results.size %> 件
+    </div>
+  </div>
+  <% @results.each do |result| %>
+  <div class="row">
+    <div class="col-sm-offset-3 col-sm-6">
+      <div class="user_label">
+        <%= link_to image_tag(result.user.image), user_path(result.user.id) %>
+        <%= link_to result.user.name, user_path(result.user.id) %> さん
+      </div>
+      <div class="bs-component">
+        <div class="panel panel-default">
+          <div class="panel-body">
+            <div>
+              <%= link_to result.neta_name, neta_path(result.id) %>
+            </div>
+            <div>
+              参考にした噺家：<%= result.source %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <% end %>
+<% end %>

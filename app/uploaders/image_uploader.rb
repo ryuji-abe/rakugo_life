@@ -45,4 +45,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   #   "something.jpg" if original_filename
   # end
   process :resize_to_limit => [50, 50]
+
+  def default_url
+    "default.jpg"
+  end
 end

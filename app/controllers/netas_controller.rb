@@ -1,6 +1,6 @@
 class NetasController < ApplicationController
   before_action :set_neta, only: [:show, :edit, :update, :destroy]
-  before_action :require_login, only: [:new, :edit, :show]
+  before_action :require_login, only: [:new, :edit]
 
   def new
     if params[:back]
@@ -14,7 +14,7 @@ class NetasController < ApplicationController
     @neta = Neta.create(neta_params)
     @neta.user_id = current_user.id
     if @neta.save
-      redirect_to netas_path, notice: '投稿しました'
+      redirect_to netas_path, notice: 'ネタを記録しました'
     else
       render 'new'
     end
@@ -28,7 +28,9 @@ class NetasController < ApplicationController
 
   def show
     @neta = Neta.find(params[:id])
-    @favorite = current_user.favorites.find_by(neta_id: @neta.id)
+    if logged_in?
+      @favorite = current_user.favorites.find_by(neta_id: @neta.id)
+    end
   end
 
   def edit
@@ -38,7 +40,7 @@ class NetasController < ApplicationController
   def update
     @neta = Neta.find(params[:id])
     if @neta.update(neta_params)
-      redirect_to user_path(current_user.id), notice: '投稿を更新しました'
+      redirect_to user_path(current_user.id), notice: 'ネタを更新しました'
     else
       render 'edit'
     end
@@ -56,7 +58,7 @@ class NetasController < ApplicationController
 
   def destroy
     @neta.destroy
-    redirect_to user_path(current_user.id), notice: '投稿を削除しました'
+    redirect_to user_path(current_user.id), notice: 'ネタを削除しました'
   end
 
   private
