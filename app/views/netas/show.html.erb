@@ -1,4 +1,9 @@
 <div class="row">
+  <div class="alert-text">
+    <p class="alert-info"><%= notice %></p>
+  </div>
+</div>
+<div class="row">
   <div class="col-sm-offset-3 col-sm-6">
     <div class="user_label">
       <%= link_to image_tag(@neta.user.image), user_path(@neta.user.id) %>
@@ -42,6 +47,5 @@
         <% end %>
       <% end %>
     <% end %>
-    <%= link_to "もどる", :back, class:'btn btn-default' %>
   </div>
 </div>
